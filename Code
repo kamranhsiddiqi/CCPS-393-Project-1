@@ -1,0 +1,73 @@
+#!/bin/bash
+# search.txt
+# October 20, 2016
+# Kamran Siddiqi
+# Student ID: *********
+# Assignment #1 - Search Medslist for Name or Dose
+# CCPS 393 Section 410
+# Instructor: L. Hiraki
+# Purpose: To search a medslist for medication(s) their corresponding name or dose
+
+
+until
+echo 'Enter Medication Code?' # prompt user for code
+read code # user enters code
+[ $code = 'ZZZ' ] # search will exit if user enters 'ZZZ'
+do
+   cut -c5-12 medslist > check_code # redirect medication code column from medslist file to standard output
+   if grep -q $code check_code # if code entered by user exists in medication code column then grep q will return 0 (true) 
+   then
+      # identify which rows in the medslist contain the medication code requested by the user and then output the code(s) and the corresponding name/dose for those rows
+      cut -c5-12 medslist | grep -n $code > linenumber_code # extract medication code and search within it the code entered by user while numbering the row in which they appear.  the numbers identify which rows of the medslist contain the medication code the user is seeking 
+      cut -c1 linenumber_code > linenumber # redirect the row number to standard output
+      while read i # start a loop to read the linenumber file
+      do 
+         head -n $i medslist | tail -n 1 >> wholeline # redirect specific rows of the medslist that are given in the linenumber file and append it to standard otput.  wholeline will only contain those rows that contain the medication code the user is seeking
+      done<linenumber
+      rm linenumber # remove temporary file no longer needed
+      while echo 'See Generic Name (G/g) or Dose (D/d)?' # prompt user for name or dose  
+      read name_or_dose # user enters name or dose
+      do
+         if [ $name_or_dose = 'G' ] || [ $name_or_dose = 'g' ] || [ $name_or_dose = 'D' ] || [ $name_or_dose = 'd' ] #  if user entered valid response
+         then
+            if [ $name_or_dose = 'G' ] || [ $name_or_dose = 'g' ] # if name is desired
+            then
+               cut -c5-12 wholeline > wholecode # redirect medication codes that contain code entered by user to standard output
+               cut -c13-25 wholeline > name # redirect medication name from the rows that contain the medication code entered by the user to standard output
+               paste wholecode name # output the medication codes that contain code entered by the user and it's corresponding name
+               rm wholecode # remove temporary file no longer needed
+               rm name # remove temporary file no longer needed
+               break # end name dose loop
+            elif [ $name_or_dose = 'D' ] || [ $name_or_dose = 'd' ] # if dose is desired
+            then
+               cut -c5-12 wholeline > wholecode # redirect medication codes that contain code entered by user to standard output
+               cut -c26-39 wholeline > dose # redirect dose from the rows that contain the medication code entered by the user to standard output
+               paste wholecode dose # output the medication codes that contain code entered by the user and it's corresponding dose
+               rm wholecode # remove temporary file no longer needed
+               rm dose # remove temporary file no longer needed
+               break # end name dose loop
+            fi # end if for whether name or dose is required
+         else # if user did not enter valid reponse for name or dose
+            echo 'Please enter only G/g or D/d.'
+         fi # end if for whether use enter valid respones for name or dose 
+      done # end name dose loop
+      rm linenumber_code # remove temporary file no longer needed
+      rm wholeline # remove temporary file no longer needed
+   else # if code entered by user does not exist in medication code column of medslist then grep q will not return 0 (false)
+      echo 'Medication code not exist'
+   fi # end if for whether medication code entered by user is in the medication code column of the medslist file
+rm check_code # remove temporarya file no longer needed
+done # loop exits when 'ZZZ' is inputted for Medication code
+echo 'Good bye.'
+
+
+
+
+
+
+
+
+
+
+
+

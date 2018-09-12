@@ -15,20 +15,20 @@ E.g. A search for the Medication Code "6314", should not display any information
 - Your program must not use any text processing utilities like awk, sed, or perl.  
 - Your program must work on any data file of the format given above - not just the given sample data file.
 
-Sample execution (not exhaustive testing):
-- $ search
-- Enter Medication Code? 6314
-- See Generic Name (G/g) or Dose (D/d)? G
-- A6314    ifosfamide
-- Enter Medication Code? 23
-- See Generic Name (G/g) or Dose (D/d)? j
-- Please enter only G or D.
-- See Generic Name (G/g) or Dose (D/d)? d
--   12345 ug         200
-- 9230     pg        6000
-- Enter Medication Code? foo
-- See Generic Name (G/g) or Dose (D/d)? D
-- No such Medication Code.
-- Enter Medication Code? ZZZ
-- Good bye.
+Sample execution (not exhaustive testing): <br />
+$ search <br />
+Enter Medication Code? 6314 <br />
+See Generic Name (G/g) or Dose (D/d)? G <br />
+A6314    ifosfamide <br />
+Enter Medication Code? 23 <br />
+See Generic Name (G/g) or Dose (D/d)? j <br />
+Please enter only G or D. <br />
+See Generic Name (G/g) or Dose (D/d)? d <br />
+    12345 ug         200 <br />
+ 9230     pg        6000 <br />
+Enter Medication Code? foo <br />
+See Generic Name (G/g) or Dose (D/d)? D <br />
+No such Medication Code. <br />
+Enter Medication Code? ZZZ <br />
+Good bye. <br />
 $

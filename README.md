@@ -16,19 +16,19 @@ E.g. A search for the Medication Code "6314", should not display any information
 - Your program must work on any data file of the format given above - not just the given sample data file.
 
 Sample execution (not exhaustive testing):
-$ search
-Enter Medication Code? 6314
-See Generic Name (G/g) or Dose (D/d)? G
-A6314    ifosfamide
-Enter Medication Code? 23
-See Generic Name (G/g) or Dose (D/d)? j
-Please enter only G or D.
-See Generic Name (G/g) or Dose (D/d)? d
-   12345 ug         200
-9230     pg        6000
-Enter Medication Code? foo
-See Generic Name (G/g) or Dose (D/d)? D
-No such Medication Code.
-Enter Medication Code? ZZZ
-Good bye.
+- $ search
+- Enter Medication Code? 6314
+- See Generic Name (G/g) or Dose (D/d)? G
+- A6314    ifosfamide
+- Enter Medication Code? 23
+- See Generic Name (G/g) or Dose (D/d)? j
+- Please enter only G or D.
+- See Generic Name (G/g) or Dose (D/d)? d
+-   12345 ug         200
+- 9230     pg        6000
+- Enter Medication Code? foo
+- See Generic Name (G/g) or Dose (D/d)? D
+- No such Medication Code.
+- Enter Medication Code? ZZZ
+- Good bye.
 $
